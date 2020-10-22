@@ -2,8 +2,10 @@
 
 This repository contains the code for reproducing the experiments in
 
-* J. C. Perdomo, T. Zrnic, C. Mendler-Dünner, M.Hardt. [Performative Prediction](https://proceedings.icml.cc/static/paper_files/icml/2020/325-Paper.pdf). ICML 2020.
-* C. Mendler-Dünner, J. C. Perdomo, T. Zrnic, M. Hardt. [Stochastic Optimization for Performative Prediction](https://arxiv.org/abs/2006.06887). NeurIPS 2020.
+* J. C. Perdomo*, T. Zrnic*, C. Mendler-Dünner, M.Hardt. [Performative Prediction](https://proceedings.icml.cc/static/paper_files/icml/2020/325-Paper.pdf). ICML 2020.
+* C. Mendler-Dünner*, J. C. Perdomo*, T. Zrnic*, M. Hardt. [Stochastic Optimization for Performative Prediction](https://arxiv.org/abs/2006.06887). NeurIPS 2020.
+
+*equal contribution
 
 ## Background
 
@@ -19,4 +21,4 @@ In the scope of this project we develop a risk minimization framework for perfor
 
 ## Organization of the Repo
 
-The python notebooks for reproducing the simulation experiments of the two papers can be found in the respective folders. 
+The python notebooks for reproducing the simulation experiments of the two papers can be found in the `experiments` folder. 
