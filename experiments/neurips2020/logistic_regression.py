@@ -1,14 +1,31 @@
-"""
-logistic regression
-----------------------
-utility function for evaluating and training an L2-regularized logistic regression classifier
-the objective is stated explicitly in Appendix A.2
-"""
+"""Logistic regression model"""
 
 import numpy as np
+from strategic import best_response
 
-# evaluate logistic regression loss
 def evaluate_loss(X, Y, theta, lam, eps=0, strat_features=None):
+    """Evaluate L2-regularized logistic regression loss function. for epsilon>0 it returns the performative loss.
+
+    Parameters
+    ----------
+        X: np.array
+            training data matrix
+        Y: np.array
+            labels
+        theta: np.array
+            parameter vector
+        lam: float
+            regulariaation parameter, lam>0
+        strat_features: list
+            list of features that can be manipulated strategically. other features remain fixed.
+        epsilon: float
+            sensitivity parameter, quantifying the strength of performative effects.    
+
+    Returns
+    -------
+        loss: float
+            logistic loss value  
+    """
     
     # if eps>0 we evaluate the perfromative loss
     if eps > 0:
@@ -23,8 +40,34 @@ def evaluate_loss(X, Y, theta, lam, eps=0, strat_features=None):
     
     return loss
 
-# gradient descent with the line search procedure for training a logistic regression model 
+
 def run_gd(X, Y, lam, n_steps = 1, tol=1e-7, theta_init=None):
+    """Gradient descent with line search procedure for training a logistic regression model.
+
+    Parameters
+    ----------
+        X: np.array
+            training data matrix
+        Y: np.array
+            labels
+        lam: float
+            regulariation parameter, lam>0
+        n_steps: int
+            number of gradient descent update steps. if distance between iterates is smaller than tol remaining steps are skipped.
+        tol: float
+            stopping criterion
+        theta_init: np.array
+            initial parameter vector. If None procedure is initialized at zero.
+
+    Returns
+    -------
+        theta: np.array
+            updated parameter vector
+        loss_list: list
+            loss values furing training for reporting
+        smoothness: float
+            smoothness parameter of the logistic loss function given the current training data matrix
+    """  
         
     n, d = X.shape
 

@@ -1,13 +1,26 @@
+"""Loading data from file"""
+
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing
 
-"""
-file_loc is the path to the 'cs-training.csv' file from
-the Kaggle 'Give Me Some Credit' dataset
-"""
-
 def load_data(file_loc):
+    """Load data from cvs file.
+    
+    Parameters
+    ----------
+        file_loc: string
+            path to the '.cvs' training data file
+    Returns
+    -------
+        X_full: np.array
+            balances data matrix     
+        Y_full: np.array
+            corresponding labels (0/1) 
+        data: DataFrame
+            raw data     
+    """
+
     data = pd.read_csv(file_loc, index_col=0)
     data.dropna(inplace=True)
     

@@ -1,8 +1,26 @@
+"""Strategic manipulation of features"""
+
 import numpy as np
 
-
-# implements best response function for agents, linear utilities quadratic costs
 def best_response(X, theta, epsilon, strat_features):
+    """Best response function for agents given classifier theta. Assumes linear utilities and quadratic costs.
+
+    Parameters
+    ----------
+        X: np.array
+            training data matrix
+        theta: np.array
+            deployed parameter vector
+        epsilon: float
+            sensitivity parameter, strength of performative effects
+        strat_features: list
+            list of features that can be manipulated strategically, other features remain fixed
+
+    Returns
+    -------
+        X_strat: np.array
+            modified training data matrix after each agents best responds to the classifier  
+    """
     
     n = X.shape[0]
 
