@@ -64,7 +64,8 @@ def logistic_regression(X_orig, Y_orig, lam, method, tol=1e-7, theta_init=None):
         lam: float
             regulariation parameter, lam>0
         method: string
-            optimization method: 'Exact' for returning the exact solution and 'GD' for performing a single gradient descent step on the parameter vector
+            optimization method: 'Exact' for returning the exact solution and 'GD' for performing a single gradient descent step on the parameter vector.
+            Repeated risk minimization (RRM) calls 'Exact' in every round, repeated gradient descent (RGD) calls 'GD'
         tol: float
             stopping criterion for exact minimization
         theta_init: np.array
@@ -96,8 +97,7 @@ def logistic_regression(X_orig, Y_orig, lam, method, tol=1e-7, theta_init=None):
         eta_init = 2 / (smoothness + 2 * lam)
 
     else:
-        print('method must be Exact or GD')
-        raise ValueError
+        raise ValueError("method must be 'Exact' or 'GD', got {!r}".format(method))
 
     if theta_init is not None:
         theta = np.copy(theta_init)
@@ -128,7 +128,7 @@ def logistic_regression(X_orig, Y_orig, lam, method, tol=1e-7, theta_init=None):
         # compute new loss
         t1 = 1.0/n * np.sum(-1 * np.multiply(Y, X @ new_theta) +
                             np.log(1 + np.exp(X @ new_theta)))
-        t2 = lam / 2 * np.linalg.norm(new_theta[:-1])
+        t2 = lam / 2 * np.linalg.norm(new_theta[:-1]) ** 2
         loss = t1 + t2
 
         # do backtracking line search
